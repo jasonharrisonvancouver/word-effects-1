@@ -33,6 +33,9 @@ int main(int argc, const char * argv[]) {
             // print NSString object
             NSLog(@"Number was: %@", inputNumberString);
             
+            int userNumber = [inputNumberString intValue];
+            
+            
             
             printf("Input a string: ");
             // limit input to max 255 characters
@@ -46,6 +49,53 @@ int main(int argc, const char * argv[]) {
             
             // print NSString object
             NSLog(@"Input was: %@", inputString);
+            
+            NSString *lastChar;
+            int numValue;
+            
+            switch (userNumber) {
+                case 1:
+                    inputString = [inputString uppercaseString];
+                    break;
+                case 2:
+                    inputString = [inputString lowercaseString];
+                
+                    break;
+                case 3:
+                    numValue = [inputString intValue];
+                    if(numValue != 0){
+                        NSLog(@"Number found: %i", numValue);
+                    }else{
+                        NSLog(@"Not a number");
+                    }
+                    break;
+                case 4:
+                    inputString = [inputString stringByAppendingString:@", eh?"];
+                    break;
+                case 5:
+                  //  NSString *lastChar = [inputString substringFromIndex:[inputString length] -1];
+                    
+                    lastChar = [inputString substringFromIndex:[inputString length] - 2];
+                    
+                    NSLog(@"last char was %@", lastChar);
+                    
+                    if([lastChar isEqualToString:@"?\n"]){
+                        NSLog(@"I don't know");
+                    }else if([lastChar isEqualToString:@"!\n"]){
+                        NSLog(@"Whoa, calm down!");
+                    }else{
+                        // nothing to do
+                    }
+                    break;
+                case 6:
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@" "
+                                                                         withString:@"-"];
+                    break;
+                    
+                default:
+                    break;
+            }
+            NSLog(@"%@", inputString);
         }
     }
     return 0;
