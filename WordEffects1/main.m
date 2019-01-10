@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
             // 255 unit long array of characters
             char inputNumber[255];
             
-            printf("Input a number 1-6: ");
+            printf("Input a number 1-9: ");
             // limit input to max 255 characters
             fgets(inputNumber, 255, stdin);
             
@@ -51,6 +51,12 @@ int main(int argc, const char * argv[]) {
             NSLog(@"Input was: %@", inputString);
             
             NSString *lastChar;
+            NSString *charString;
+            NSString *emoji = [NSString stringWithFormat:@"\U0001F463"];
+            
+            char c;
+            int count = 0;
+            
             int numValue;
             
             switch (userNumber) {
@@ -90,6 +96,54 @@ int main(int argc, const char * argv[]) {
                 case 6:
                     inputString = [inputString stringByReplacingOccurrencesOfString:@" "
                                                                          withString:@"-"];
+                    break;
+                    
+                case 7:
+                    
+                    inputString = [inputString lowercaseString];
+                    // letter count
+                    for(int i = 0; i < ([inputString length] - 1); i++){
+                        c = [inputString characterAtIndex:i];
+                        //NSLog(@"letter is %c", c);
+                        if(c >= 'a' && c <= 'z'){
+                            count++;
+                        }
+                    }
+                    NSLog(@"%i letters", count);
+                    break;
+                case 8:
+                    // punctuation removal
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@"."
+                                                                         withString:@""];
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@","
+                                                                         withString:@""];
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@"?"
+                                                                         withString:@""];
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@"!"
+                                                                         withString:@""];
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@":"
+                                                                         withString:@""];
+                    inputString = [inputString stringByReplacingOccurrencesOfString:@";"
+                                                                         withString:@""];
+  
+                    
+                    
+                    break;
+                case 9:
+                    // replace every letter with an emoji
+                    inputString = [inputString lowercaseString];
+                    // letter count
+                    for(int i = 0; i < ([inputString length] - 1); i++){
+                        c = [inputString characterAtIndex:i];
+                        //NSLog(@"letter is %c", c);
+                        charString = [[NSMutableString alloc] initWithFormat:@"%c", c];
+                        if(c >= 'a' && c <= 'z'){
+                            inputString = [inputString stringByReplacingOccurrencesOfString:charString
+                                                                                 withString:emoji];
+                        }
+                    }
+                    NSLog(@"%i letters", count);
+                    break;
                     break;
                     
                 default:
